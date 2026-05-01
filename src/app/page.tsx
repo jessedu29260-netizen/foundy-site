@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { GENOMES } from '@/lib/genomes.config'
 
