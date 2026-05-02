@@ -624,16 +624,19 @@ function Pricing() {
       name: 'Founding', price: '£75', period: '/mo · 12-month lock', tag: '5 slots remaining',
       features: ['Everything in Core', 'Priority genome selection', '12-month price lock', 'Case study rights (mutual)', 'Direct founder access'],
       cta: 'Claim founding slot →', featured: true, note: 'Saves £180 vs Core. Closes 2026-05-09.',
+      link: 'https://buy.stripe.com/5kQ3co9RVeeS6iSd6R4c80l',
     },
     {
       name: 'Core', price: '£90', period: '/mo', tag: null,
       features: ['Domain managed', 'DNS & SSL handled', '1–5 page site', 'Genome-matched design', '1 content update/month', 'Weekly health check', 'Vercel hosting'],
       cta: 'Get started →', featured: false, note: null,
+      link: 'https://buy.stripe.com/4gMdR26FJc6K8r02sd4c80j',
     },
     {
       name: 'Full', price: '£175', period: '/mo', tag: null,
       features: ['Everything in Core', '4 content updates/month', 'Monthly report card PDF', '48h support SLA', 'Blog or news section', 'Priority genome selection'],
       cta: 'Get started →', featured: false, note: null,
+      link: 'https://buy.stripe.com/9B64gs7JN6MqcHg0k54c80k',
     },
   ]
 
@@ -696,7 +699,7 @@ function Pricing() {
                   </li>
                 ))}
               </ul>
-              <a href="#intake" style={{
+              <a href={t.link} target="_blank" rel="noopener noreferrer" style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 padding: '0.85rem 1.5rem', borderRadius: '3px', fontSize: '0.875rem',
                 fontWeight: 500, textDecoration: 'none', transition: 'all 0.18s ease',
@@ -816,6 +819,29 @@ function Intake() {
     gsap.from('.int-r', { y: 38, opacity: 0, duration: 0.8, ease: 'expo.out', scrollTrigger: { trigger: '.int-r', start: 'top 85%' } })
   }, { scope: ref })
 
+  const [name,   setName]   = useState('')
+  const [email,  setEmail]  = useState('')
+  const [brief,  setBrief]  = useState('')
+  const [plan,   setPlan]   = useState('founding')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus('loading')
+    try {
+      const res  = await fetch('/api/brief', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, brief, plan }),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      window.location.href = data.stripeUrl
+    } catch {
+      setStatus('error')
+    }
+  }
+
   const inputStyle: React.CSSProperties = {
     width: '100%', padding: '0.85rem 1rem', borderRadius: '5px',
     fontSize: '0.875rem', background: 'white',
@@ -851,17 +877,17 @@ function Intake() {
             </div>
           </div>
           <div className="int-r" style={{ background: 'var(--paper-warm)', border: '1px solid var(--border)', borderRadius: '10px', padding: '2.25rem 2rem' }}>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} onSubmit={e => e.preventDefault()}>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }} onSubmit={handleSubmit}>
               <div>
                 <label style={labelStyle}>Your name</label>
-                <input type="text" placeholder="Alex Smith" style={inputStyle}
+                <input type="text" placeholder="Alex Smith" required value={name} onChange={e => setName(e.target.value)} style={inputStyle}
                   onFocus={e => { e.currentTarget.style.borderColor = 'var(--accent)' }}
                   onBlur={e => { e.currentTarget.style.borderColor = 'var(--border)' }}
                 />
               </div>
               <div>
                 <label style={labelStyle}>Work email</label>
-                <input type="email" placeholder="alex@firmname.co.uk" style={inputStyle}
+                <input type="email" placeholder="alex@firmname.co.uk" required value={email} onChange={e => setEmail(e.target.value)} style={inputStyle}
                   onFocus={e => { e.currentTarget.style.borderColor = 'var(--accent)' }}
                   onBlur={e => { e.currentTarget.style.borderColor = 'var(--border)' }}
                 />
@@ -869,6 +895,7 @@ function Intake() {
               <div>
                 <label style={labelStyle}>What does your business do?</label>
                 <textarea rows={4} placeholder="I'm a fractional CFO working with UK scale-ups..."
+                  value={brief} onChange={e => setBrief(e.target.value)}
                   style={{ ...inputStyle, resize: 'none' }}
                   onFocus={e => { e.currentTarget.style.borderColor = 'var(--accent)' }}
                   onBlur={e => { e.currentTarget.style.borderColor = 'var(--border)' }}
@@ -876,15 +903,20 @@ function Intake() {
               </div>
               <div>
                 <label style={labelStyle}>Plan</label>
-                <select style={inputStyle}>
+                <select style={inputStyle} value={plan} onChange={e => setPlan(e.target.value)}>
                   <option value="founding">Founding — £75/mo (5 slots left)</option>
                   <option value="core">Core — £90/mo</option>
                   <option value="full">Full — £175/mo</option>
                 </select>
               </div>
-              <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: '0.25rem' }}>
-                Send brief →
+              <button type="submit" disabled={status === 'loading'} className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: '0.25rem', opacity: status === 'loading' ? 0.7 : 1 }}>
+                {status === 'loading' ? 'Saving brief…' : 'Send brief →'}
               </button>
+              {status === 'error' && (
+                <p style={{ fontSize: '0.72rem', color: '#c0392b', textAlign: 'center', fontFamily: 'var(--font-dm-mono)' }}>
+                  Something went wrong — please try again or email hello@foundy.studio
+                </p>
+              )}
               <p style={{ fontSize: '0.7rem', color: 'var(--faint)', textAlign: 'center', fontFamily: 'var(--font-dm-mono)' }}>
                 We respond within 24 hours · No payment until you approve
               </p>
