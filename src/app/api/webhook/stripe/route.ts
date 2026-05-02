@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
     const email = session.customer_details?.email?.toLowerCase()
     const customerId = session.customer as string
     const subId = session.subscription as string
+    const clientName = session.customer_details?.name ?? ''
     if (!email || !subId) return NextResponse.json({ received: true })
     const sub = await stripe.subscriptions.retrieve(subId)
     const priceId = sub.items.data[0]?.price.id ?? ''
