@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
     const { error } = await db.from('foundy_clients').upsert(
       {
         email,
+        client_name: clientName,
         stripe_customer_id: customerId,
         stripe_sub_id: subId,
         subscription_plan: meta.plan,
