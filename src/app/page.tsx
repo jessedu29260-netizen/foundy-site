@@ -179,13 +179,13 @@ function Hero() {
       </p>
 
       {/* CTAs */}
-      <div className="hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.75rem', marginBottom: '4.5rem' }}>
-        <a href="#intake" className="btn-primary" style={{ fontSize: '0.93rem', padding: '0.9rem 2rem' }}>
+      <div className="hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '0.75rem', marginBottom: '4.5rem' }}>
+        <a href="#intake" className="btn-primary" style={{ fontSize: '0.93rem', padding: '0.9rem 2rem', lineHeight: 1 }}>
           Claim founding slot — £75/mo →
         </a>
         <a href="#process" style={{
           display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
-          fontSize: '0.93rem', padding: '0.9rem 2rem',
+          fontSize: '0.93rem', padding: '0.9rem 2rem', lineHeight: 1,
           color: 'var(--mid)', textDecoration: 'none',
           border: '1px solid var(--border)', borderRadius: '3px',
           transition: 'border-color 0.18s ease, color 0.18s ease',
@@ -496,28 +496,36 @@ function Genomes() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {genomes.map(g => (
             <div key={g.id} className="gen-card" style={{
-              borderRadius: '6px',
-              background: 'rgba(245,244,240,0.03)',
-              border: '1px solid rgba(245,244,240,0.07)',
-              borderTop: `3px solid ${g.color}`,
-              padding: '1.75rem 1.5rem',
-              transition: 'background 0.2s ease, transform 0.22s ease',
+              borderRadius: '14px',
+              background: 'rgba(245,244,240,0.032)',
+              border: '1px solid rgba(245,244,240,0.08)',
+              borderTop: `2px solid ${g.color}`,
+              padding: '1.75rem 1.5rem 1.6rem',
+              transition: 'background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease',
               cursor: 'default',
             }}
               onMouseEnter={e => {
                 const el = e.currentTarget as HTMLDivElement
                 el.style.background = 'rgba(245,244,240,0.07)'
-                el.style.transform = 'translateY(-4px)'
+                el.style.transform = 'translateY(-5px)'
+                el.style.boxShadow = `0 16px 40px rgba(0,0,0,0.28), 0 0 0 1px ${g.color}22`
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLDivElement
-                el.style.background = 'rgba(245,244,240,0.03)'
+                el.style.background = 'rgba(245,244,240,0.032)'
                 el.style.transform = 'translateY(0)'
+                el.style.boxShadow = 'none'
               }}
             >
-              <span style={{ display: 'block', fontFamily: 'var(--font-dm-mono)', fontSize: '0.6rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: g.color, marginBottom: '1rem' }}>{g.id}</span>
-              <h3 style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--paper)', marginBottom: '0.55rem' }}>{g.name}</h3>
-              <p style={{ fontSize: '0.75rem', color: 'rgba(245,244,240,0.35)', fontFamily: 'var(--font-dm-mono)', lineHeight: 1.55 }}>{g.suit}</p>
+              <span style={{
+                display: 'inline-block', fontFamily: 'var(--font-dm-mono)', fontSize: '0.58rem',
+                letterSpacing: '0.16em', textTransform: 'uppercase',
+                color: g.color, marginBottom: '1.1rem',
+                padding: '0.22rem 0.6rem', borderRadius: '100px',
+                background: `${g.color}18`, border: `1px solid ${g.color}30`,
+              }}>{g.id}</span>
+              <h3 style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.18rem', fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--paper)', marginBottom: '0.5rem', lineHeight: 1.2 }}>{g.name}</h3>
+              <p style={{ fontSize: '0.72rem', color: 'rgba(245,244,240,0.32)', fontFamily: 'var(--font-dm-mono)', lineHeight: 1.55 }}>{g.suit}</p>
             </div>
           ))}
         </div>
@@ -634,11 +642,11 @@ function Pricing() {
       <div className="max-w-content mx-auto px-6">
         <p className="section-number mb-5">06 / Investment</p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <W text="One price. Everything included." tag="h2" className="pri-h2"
+          <W text="Three plans. One service." tag="h2" className="pri-h2"
             style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', fontWeight: 400, maxWidth: '22ch', letterSpacing: '-0.028em' }}
           />
           <p className="text-sm max-w-xs" style={{ color: 'var(--mid)', lineHeight: 1.7 }}>
-            After 12 months, you own the site outright. Stay on subscription — or take the repo and host it yourself.
+            After 12 months on any plan, the codebase is yours outright — take the repo and self-host, or stay on subscription.
           </p>
         </div>
         <div className="pri-cards grid md:grid-cols-3 gap-5 items-start">
