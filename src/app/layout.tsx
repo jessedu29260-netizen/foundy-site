@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Fraunces, DM_Sans, DM_Mono } from 'next/font/google'
+import { LenisProvider } from '@/providers/lenis-provider'
 import './globals.css'
 
 const fraunces = Fraunces({
@@ -49,7 +50,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en-GB"
       className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
-      <body>{children}</body>
+      <body>
+        <LenisProvider>{children}</LenisProvider>
+      </body>
     </html>
   )
 }
