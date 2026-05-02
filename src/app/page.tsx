@@ -40,7 +40,7 @@ function useReveal(ref: any, selector: string, vars: Record<string, any> = {}, t
 
 function Nav() {
   useGSAP(() => {
-    gsap.from('.nav-bar', { y: -20, opacity: 0, duration: 0.65, ease: 'expo.out', delay: 0.1 })
+    // Nav entrance is handled by CSS @keyframes navSlideDown (lifecycle-safe)
     gsap.to('.nav-bar', {
       scrollTrigger: { trigger: 'body', start: '180px top', toggleClass: { targets: '.nav-bar', className: 'nav-dark' } },
     })
@@ -80,20 +80,11 @@ function Nav() {
 ═══════════════════════════════════════════════════════════════════════════ */
 
 function Hero() {
-  const ref = useRef<HTMLElement>(null)
-
-  useGSAP(() => {
-    const tl = gsap.timeline({ delay: 0.2 })
-    tl.from('.hero-badge', { y: 14, opacity: 0, duration: 0.55, ease: 'expo.out' })
-      .from('.hero-h1 .split-word', { y: 80, opacity: 0, duration: 0.9, stagger: 0.06, ease: 'expo.out' }, '-=0.2')
-      .from('.hero-sub', { y: 22, opacity: 0, duration: 0.65, ease: 'expo.out' }, '-=0.45')
-      .from('.hero-ctas > *', { y: 20, opacity: 0, duration: 0.55, stagger: 0.1, ease: 'expo.out' }, '-=0.35')
-      .from('.hero-metric', { y: 18, opacity: 0, duration: 0.5, stagger: 0.07, ease: 'expo.out' }, '-=0.3')
-      .from('.hero-scroll', { opacity: 0, duration: 0.6 }, '-=0.1')
-  }, { scope: ref })
+  // All above-fold entrance animations use CSS @keyframes (lifecycle-safe)
+  // GSAP was killing timelines before delay elapsed due to context revert
 
   return (
-    <section ref={ref} id="hero" style={{
+    <section id="hero" style={{
       minHeight: '100svh',
       display: 'flex',
       flexDirection: 'column',
@@ -211,8 +202,8 @@ function Hero() {
           { n: '£0', sub: 'setup fee' },
           { n: '100', sub: 'Lighthouse' },
           { n: '12mo', sub: 'then you own it' },
-        ].map(m => (
-          <div key={m.n} className="hero-metric" style={{ textAlign: 'center' }}>
+        ].map((m, idx) => (
+          <div key={m.n} className="hero-metric" style={{ textAlign: 'center', animation: `heroFadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${(0.78 + idx * 0.07).toFixed(2)}s both` }}>
             <span style={{
               display: 'block',
               fontFamily: 'var(--font-fraunces)',
@@ -239,7 +230,7 @@ function Hero() {
         position: 'absolute', bottom: '2rem', left: '50%',
         transform: 'translateX(-50%)',
         display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.4rem',
-        animation: 'scrollBounce 2.2s ease-in-out infinite', opacity: 0.28,
+        animation: 'scrollBounce 2.2s ease-in-out 1.4s both',
       }}>
         <span style={{ fontSize: '0.6rem', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>scroll</span>
         <svg width="12" height="18" viewBox="0 0 12 18" fill="none">
