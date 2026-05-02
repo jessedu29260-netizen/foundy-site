@@ -42,6 +42,10 @@ export const metadata: Metadata = {
     description: 'One brief. We handle domain, DNS, design, build, and everything after. £90/month.',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -56,3 +60,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+

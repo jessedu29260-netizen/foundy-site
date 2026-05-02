@@ -49,8 +49,15 @@ function Nav() {
   return (
     <header className="nav-bar">
       <div className="max-w-content mx-auto px-6 flex items-center justify-between w-full">
-        <a href="/" style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.04em', textDecoration: 'none', color: 'inherit' }}>
-          Foundy.
+        <a href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', textDecoration: 'none', color: 'inherit' }} aria-label="Foundy home">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" rx="5" fill="#0A0A0B"/>
+            <rect x="8" y="6.5" width="3.5" height="18.5" fill="#F5F4F0"/>
+            <rect x="8" y="6.5" width="16" height="3" fill="#F5F4F0"/>
+            <rect x="8" y="13.5" width="11" height="2.75" fill="#F5F4F0"/>
+            <rect x="12.5" y="26.5" width="9.5" height="2" rx="1" fill="#6366F1"/>
+          </svg>
+          <span style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.04em' }}>Foundy.</span>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm" style={{ color: 'var(--mid)' }}>
           {[['#process', 'How it works'], ['#genomes', 'Styles'], ['#pricing', 'Pricing'], ['#intake', 'Start']].map(([href, label]) => (
@@ -941,8 +948,17 @@ function Footer() {
       <div className="max-w-content mx-auto px-6">
         <div className="ft-row flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div>
-            <span style={{ display: 'block', fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', letterSpacing: '-0.04em', fontWeight: 400, marginBottom: '0.3rem' }}>Foundy.</span>
-            <span style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>Turnkey websites for UK B2B professionals</span>
+            <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit', marginBottom: '0.35rem' }} aria-label="Foundy home">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect width="32" height="32" rx="5" fill="#0A0A0B"/>
+                <rect x="8" y="6.5" width="3.5" height="18.5" fill="#F5F4F0"/>
+                <rect x="8" y="6.5" width="16" height="3" fill="#F5F4F0"/>
+                <rect x="8" y="13.5" width="11" height="2.75" fill="#F5F4F0"/>
+                <rect x="12.5" y="26.5" width="9.5" height="2" rx="1" fill="#6366F1"/>
+              </svg>
+              <span style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', letterSpacing: '-0.04em', fontWeight: 400 }}>Foundy.</span>
+            </a>
+            <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>Turnkey websites for UK B2B professionals</span>
           </div>
           <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
             {[['#process', 'Process'], ['#genomes', 'Genomes'], ['#pricing', 'Pricing'], ['#faq', 'FAQ'], ['mailto:hello@foundy.studio', 'Contact']].map(([href, label]) => (
@@ -984,3 +1000,5 @@ export default function Home() {
     </>
   )
 }
+
+
