@@ -177,7 +177,7 @@ function Hero() {
       </p>
 
       {/* CTAs */}
-      <div className="hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '0.75rem', marginBottom: '4.5rem' }}>
+      <div className="hero-ctas" style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '0.75rem', marginBottom: '2rem' }}>
         <a href="#intake" className="btn-primary" style={{ fontSize: '0.93rem', padding: '0.9rem 2rem', lineHeight: 1 }}>
           Claim founding slot — £75/mo →
         </a>
@@ -193,6 +193,16 @@ function Hero() {
         >
           See how it works
         </a>
+      </div>
+
+      {/* Soft divider */}
+      <div className="hero-email-wrap" style={{ marginBottom: '3.5rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.85rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', width: '100%', maxWidth: '380px' }}>
+          <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+          <span style={{ fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--faint)', whiteSpace: 'nowrap' }}>Not ready? See your genome first</span>
+          <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+        </div>
+        <HeroEmailCapture />
       </div>
 
       {/* Metrics strip */}
@@ -239,6 +249,92 @@ function Hero() {
         </svg>
       </div>
     </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO EMAIL CAPTURE
+═══════════════════════════════════════════════════════════════════════════ */
+
+function HeroEmailCapture() {
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!email) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'hero' }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+        padding: '0.7rem 1.25rem',
+        background: 'rgba(99,102,241,0.07)',
+        border: '1px solid rgba(99,102,241,0.2)',
+        borderRadius: '5px',
+        fontSize: '0.8rem',
+        color: 'var(--accent)',
+        fontFamily: 'var(--font-dm-mono)',
+        letterSpacing: '0.04em',
+      }}>
+        <span style={{ fontSize: '0.9rem' }}>✦</span>
+        Noted — we will send your genome recommendation shortly.
+      </div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.55rem' }}>
+      <div style={{ display: 'flex', gap: '0.45rem', flexWrap: 'wrap', justifyContent: 'center', width: '100%', maxWidth: '440px' }}>
+        <input
+          type="email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="your@firm.co.uk"
+          required
+          style={{
+            flex: '1 1 200px',
+            padding: '0.78rem 1rem',
+            borderRadius: '4px',
+            fontSize: '0.875rem',
+            background: 'white',
+            border: '1px solid var(--border)',
+            color: 'var(--ink)',
+            outline: 'none',
+            fontFamily: 'var(--font-dm-sans)',
+            transition: 'border-color 0.18s ease',
+          }}
+          onFocus={e => { e.currentTarget.style.borderColor = 'var(--accent)' }}
+          onBlur={e => { e.currentTarget.style.borderColor = 'var(--border)' }}
+        />
+        <button
+          type="submit"
+          disabled={status === 'loading'}
+          className="btn-primary"
+          style={{ fontSize: '0.82rem', padding: '0.78rem 1.35rem', flexShrink: 0 }}
+        >
+          {status === 'loading' ? 'Saving…' : 'See my genome →'}
+        </button>
+      </div>
+      {status === 'error' && (
+        <p style={{ fontSize: '0.7rem', color: '#c0392b', fontFamily: 'var(--font-dm-mono)' }}>
+          Something went wrong — try again.
+        </p>
+      )}
+    </form>
   )
 }
 
@@ -530,6 +626,132 @@ function Genomes() {
         <p className="gen-head mt-8 text-center" style={{ fontSize: '0.72rem', color: 'rgba(245,244,240,0.25)', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.07em' }}>
           All genomes · 100/100 Lighthouse · A+ SSL · Vercel Edge · next/image · zero layout shift
         </p>
+      </div>
+    </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GENOME INTERRUPT  (ink · between Genomes and SocialProof)
+═══════════════════════════════════════════════════════════════════════════ */
+
+function GenomeInterrupt() {
+  const ref = useRef<HTMLElement>(null)
+  useReveal(ref, '.gi-left > *', { y: 28, stagger: 0.09 }, 'top 80%')
+  useReveal(ref, '.gi-card', { y: 36 }, 'top 80%')
+
+  const [email, setEmail] = useState('')
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  const genomeIds  = ['G01', 'G02', 'G03', 'G04', 'G05', 'G06', 'G07', 'G08']
+  const genomeColors = ['#A89070', '#38BDF8', '#D97706', '#EF4444', '#10B981', '#A855F7', '#6366F1', '#F59E0B']
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    if (!email) return
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'genome-interrupt' }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('success')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  return (
+    <section ref={ref} style={{
+      background: 'var(--ink)', color: 'var(--paper)',
+      padding: 'clamp(4.5rem, 9vw, 8rem) 0',
+      borderTop: '1px solid rgba(245,244,240,0.05)',
+    }}>
+      <div className="max-w-content mx-auto px-6">
+        <div className="grid md:grid-cols-[1.15fr_1fr] gap-14 items-center">
+
+          {/* Left */}
+          <div className="gi-left">
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem' }}>
+              {genomeIds.map((id, i) => (
+                <span key={id} style={{
+                  display: 'inline-block',
+                  fontFamily: 'var(--font-dm-mono)', fontSize: '0.6rem',
+                  letterSpacing: '0.14em', textTransform: 'uppercase',
+                  color: genomeColors[i],
+                  padding: '0.22rem 0.65rem', borderRadius: '100px',
+                  background: `${genomeColors[i]}18`, border: `1px solid ${genomeColors[i]}30`,
+                }}>{id}</span>
+              ))}
+            </div>
+            <h2 style={{
+              fontFamily: 'var(--font-fraunces)',
+              fontSize: 'clamp(1.85rem, 3.8vw, 2.85rem)',
+              fontWeight: 400, letterSpacing: '-0.03em', lineHeight: 1.1,
+              marginBottom: '1rem',
+            }}>
+              Not sure which genome fits your business?
+            </h2>
+            <p style={{ fontSize: '0.9rem', color: 'rgba(245,244,240,0.44)', lineHeight: 1.72, maxWidth: '40ch' }}>
+              Drop your email. We will review what you do and send a no-obligation genome recommendation — the exact design identity we would build for you.
+            </p>
+          </div>
+
+          {/* Right — card */}
+          <div className="gi-card" style={{
+            background: 'rgba(245,244,240,0.04)',
+            border: '1px solid rgba(245,244,240,0.09)',
+            borderRadius: '12px',
+            padding: '2.25rem 2rem',
+          }}>
+            {status === 'success' ? (
+              <div style={{ textAlign: 'center', padding: '1.75rem 0' }}>
+                <span style={{ display: 'block', color: 'var(--accent)', fontSize: '1.4rem', marginBottom: '1rem' }}>✦</span>
+                <p style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.25rem', letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
+                  Genome on its way.
+                </p>
+                <p style={{ fontSize: '0.8rem', color: 'rgba(245,244,240,0.38)', fontFamily: 'var(--font-dm-mono)', lineHeight: 1.6 }}>
+                  We will review your details and reply within 24 hours.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div>
+                  <label style={{ display: 'block', fontSize: '0.68rem', color: 'rgba(245,244,240,0.35)', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
+                    Work email
+                  </label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="your@firm.co.uk"
+                    required
+                    className="form-input"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="btn-primary"
+                  style={{ width: '100%', justifyContent: 'center', opacity: status === 'loading' ? 0.7 : 1 }}
+                >
+                  {status === 'loading' ? 'Sending…' : 'Send my genome preview →'}
+                </button>
+                {status === 'error' && (
+                  <p style={{ fontSize: '0.72rem', color: '#c0392b', fontFamily: 'var(--font-dm-mono)', textAlign: 'center' }}>
+                    Something went wrong — please try again.
+                  </p>
+                )}
+                <p style={{ fontSize: '0.68rem', color: 'rgba(245,244,240,0.22)', fontFamily: 'var(--font-dm-mono)', textAlign: 'center', letterSpacing: '0.03em' }}>
+                  No payment · No commitment · Reply within 24 hours
+                </p>
+              </form>
+            )}
+          </div>
+
+        </div>
       </div>
     </section>
   )
@@ -981,6 +1203,7 @@ export default function Home() {
         <Comparison />
         <Process />
         <Genomes />
+        <GenomeInterrupt />
         <SocialProof />
         <Pricing />
         <FAQ />
