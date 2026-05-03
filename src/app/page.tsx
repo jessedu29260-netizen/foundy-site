@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { gsap, useGSAP } from '@/lib/gsap'
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -59,12 +59,9 @@ function Nav() {
           </svg>
           <span style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.04em' }}>Foundy.</span>
         </a>
-        <nav className="hidden md:flex items-center gap-7 text-sm" style={{ color: 'var(--mid)' }}>
+        <nav className="hidden md:flex items-center gap-7 text-sm">
           {[['#process', 'How it works'], ['#genomes', 'Styles'], ['#pricing', 'Pricing'], ['#intake', 'Start']].map(([href, label]) => (
-            <a key={label} href={href} style={{ textDecoration: 'none', color: 'inherit', transition: 'color 0.15s ease' }}
-              onMouseEnter={e => { e.currentTarget.style.color = 'inherit' }}
-              onMouseLeave={e => { e.currentTarget.style.color = 'var(--mid)' }}
-            >{label}</a>
+            <a key={label} href={href} className="nav-link">{label}</a>
           ))}
         </nav>
         <a href="#intake" className="btn-primary" style={{ fontSize: '0.82rem', padding: '0.6rem 1.25rem' }}>
@@ -779,6 +776,20 @@ function SocialProof() {
         <W text="What clients say." tag="h2" className="prf-head"
           style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}
         />
+        {/* Star rating row */}
+        <div className="prf-head" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', marginBottom: 'clamp(2rem, 4vw, 3.5rem)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+            {[0,1,2,3,4].map(i => (
+              <svg key={i} width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M7 1L8.6 5.2H13L9.7 7.8L11 12L7 9.4L3 12L4.3 7.8L1 5.2H5.4L7 1Z" fill="#6366F1" />
+              </svg>
+            ))}
+            <span style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--ink)', marginLeft: '0.35rem' }}>4.9</span>
+          </div>
+          <span style={{ width: '1px', height: '14px', background: 'var(--border)', display: 'inline-block' }} />
+          <span style={{ fontSize: '0.75rem', color: 'var(--mid)', fontFamily: 'var(--font-dm-mono)' }}>Based on 23 client engagements</span>
+        </div>
+
         <div className="grid md:grid-cols-3 gap-6">
           {quotes.map((q, i) => (
             <div key={i} className="prf-card" style={{
@@ -788,7 +799,19 @@ function SocialProof() {
               background: 'var(--paper)',
               border: '1px solid var(--border)',
               overflow: 'hidden',
-            }}>
+              transition: 'transform 0.22s ease, box-shadow 0.22s ease',
+            }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLDivElement
+                el.style.transform = 'translateY(-4px)'
+                el.style.boxShadow = '0 12px 40px rgba(10,10,11,0.09)'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLDivElement
+                el.style.transform = 'translateY(0)'
+                el.style.boxShadow = 'none'
+              }}
+            >
               {/* Decorative quotation mark watermark */}
               <span aria-hidden="true" style={{
                 position: 'absolute', top: '0.8rem', right: '1.25rem',
@@ -800,6 +823,15 @@ function SocialProof() {
                 pointerEvents: 'none',
                 userSelect: 'none',
               }}>&ldquo;</span>
+
+              {/* Stars per card */}
+              <div style={{ display: 'flex', gap: '0.25rem', marginBottom: '1.25rem' }}>
+                {[0,1,2,3,4].map(s => (
+                  <svg key={s} width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M7 1L8.6 5.2H13L9.7 7.8L11 12L7 9.4L3 12L4.3 7.8L1 5.2H5.4L7 1Z" fill="#6366F1" opacity="0.7" />
+                  </svg>
+                ))}
+              </div>
 
               <p style={{
                 fontFamily: 'var(--font-fraunces)',
@@ -1189,12 +1221,141 @@ function Footer() {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   STICKY CAPTURE  (fixed bottom pill · appears at 35% scroll)
+═══════════════════════════════════════════════════════════════════════════ */
+
+function StickyCapture() {
+  const [email, setEmail]     = useState('')
+  const [visible, setVisible] = useState(false)
+  const [dismissed, setDismissed] = useState(false)
+  const [status, setStatus]   = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+
+  useEffect(() => {
+    if (dismissed) return
+    const onScroll = () => {
+      const pct = (window.scrollY / Math.max(1, document.documentElement.scrollHeight - window.innerHeight)) * 100
+      if (pct > 35) setVisible(true)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [dismissed])
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setStatus('loading')
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'sticky' }),
+      })
+      if (!res.ok) throw new Error()
+      setStatus('success')
+      setTimeout(() => setDismissed(true), 2800)
+    } catch { setStatus('error') }
+  }
+
+  const show = visible && !dismissed
+
+  return (
+    <div style={{
+      position: 'fixed',
+      bottom: '1.5rem',
+      left: '50%',
+      transform: `translateX(-50%) translateY(${show ? '0' : '140%'})`,
+      transition: 'transform 0.45s cubic-bezier(0.16,1,0.3,1)',
+      zIndex: 8999,
+      background: 'var(--ink)',
+      border: '1px solid rgba(99,102,241,0.3)',
+      borderRadius: '100px',
+      padding: '0.6rem 0.6rem 0.6rem 1.25rem',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '0.65rem',
+      boxShadow: '0 24px 64px rgba(0,0,0,0.42), 0 0 0 1px rgba(99,102,241,0.1)',
+      width: 'min(calc(100vw - 2rem), 540px)',
+      pointerEvents: show ? 'auto' : 'none',
+    }}>
+
+      {/* Pulse badge */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+        <span style={{
+          width: '6px', height: '6px', borderRadius: '50%',
+          background: 'var(--accent)', display: 'inline-block',
+          animation: 'pulse 2s ease-in-out infinite',
+        }} />
+        <span style={{
+          fontSize: '0.65rem', fontFamily: 'var(--font-dm-mono)',
+          color: 'rgba(245,244,240,0.45)', letterSpacing: '0.08em',
+          textTransform: 'uppercase', whiteSpace: 'nowrap',
+        }}>5 slots</span>
+      </div>
+
+      {status === 'success' ? (
+        <span style={{
+          flex: 1, textAlign: 'center', fontSize: '0.75rem',
+          color: 'var(--accent)', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.04em',
+        }}>
+          ✦ Noted — genome recommendation incoming
+        </span>
+      ) : (
+        <form onSubmit={handleSubmit} style={{ flex: 1, display: 'flex', gap: '0.45rem', minWidth: 0 }}>
+          <input
+            type="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            placeholder="your@firm.co.uk"
+            required
+            style={{
+              flex: 1, minWidth: 0,
+              padding: '0.5rem 0.9rem',
+              borderRadius: '100px',
+              fontSize: '0.78rem',
+              background: 'rgba(245,244,240,0.07)',
+              border: '1px solid rgba(245,244,240,0.1)',
+              color: 'var(--paper)',
+              outline: 'none',
+              fontFamily: 'var(--font-dm-sans)',
+              transition: 'border-color 0.18s ease',
+            }}
+            onFocus={e => { e.currentTarget.style.borderColor = 'rgba(99,102,241,0.5)' }}
+            onBlur={e => { e.currentTarget.style.borderColor = 'rgba(245,244,240,0.1)' }}
+          />
+          <button
+            type="submit"
+            disabled={status === 'loading'}
+            className="btn-primary"
+            style={{ fontSize: '0.75rem', padding: '0.5rem 1.05rem', borderRadius: '100px', flexShrink: 0, lineHeight: 1 }}
+          >
+            {status === 'loading' ? '…' : 'Get genome →'}
+          </button>
+        </form>
+      )}
+
+      {/* Dismiss */}
+      <button
+        onClick={() => setDismissed(true)}
+        style={{
+          flexShrink: 0, background: 'transparent', border: 'none', cursor: 'pointer',
+          color: 'rgba(245,244,240,0.25)', fontSize: '1.1rem', lineHeight: 1,
+          padding: '0.25rem 0.35rem 0.25rem 0.5rem',
+          transition: 'color 0.15s ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.color = 'rgba(245,244,240,0.65)' }}
+        onMouseLeave={e => { e.currentTarget.style.color = 'rgba(245,244,240,0.25)' }}
+        aria-label="Dismiss"
+      >×</button>
+    </div>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    PAGE
 ═══════════════════════════════════════════════════════════════════════════ */
 
 export default function Home() {
   return (
     <>
+      <StickyCapture />
       <Nav />
       <main>
         <Hero />
