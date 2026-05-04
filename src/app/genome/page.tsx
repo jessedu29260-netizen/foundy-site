@@ -173,14 +173,16 @@ function Hero() {
       <style>{`
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
         @keyframes orbitCounter {
-          from { transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r) * 1px)) rotate(calc(-1 * var(--a))); }
-          to   { transform: translate(-50%,-50%) rotate(var(--a)) translateY(calc(-1 * var(--r) * 1px)) rotate(calc(-1 * var(--a) - 360deg)); }
+          from { transform: translate(-50%,-50%) rotate(var(--a)) translateY(var(--r)) rotate(calc(-1 * var(--a))); }
+          to   { transform: translate(-50%,-50%) rotate(var(--a)) translateY(var(--r)) rotate(calc(-1 * var(--a) - 360deg)); }
         }
         @keyframes centerPulse { 0%,100%{transform:scale(1);opacity:.5} 50%{transform:scale(1.1);opacity:.15} }
         .orbit-spin      { position:absolute;inset:0;animation:orbitSpin 90s linear infinite;transform-origin:center; }
         .orbit-spin-rev  { animation-duration:140s !important; animation-direction:reverse !important; }
         .orbit-node      {
           position:absolute;left:50%;top:50%;
+          /* transform set via CSS only — inline transform would block the animation */
+          transform: translate(-50%,-50%) rotate(var(--a)) translateY(var(--r)) rotate(calc(-1 * var(--a)));
           display:inline-flex;align-items:center;gap:7px;
           padding:5px 11px 5px 7px;border-radius:100px;
           background:rgba(245,244,240,.84);backdrop-filter:blur(6px);
@@ -226,7 +228,7 @@ function Hero() {
           ))}
 
           {/* Outer spin — canonical genome names */}
-          <OrbitSpin speed={90} reversed={false} nodes={[
+          <OrbitSpin reversed={false} nodes={[
             { a: 0,   r: 0.44, color: '#A89070', label: 'Monument', num: '01' },
             { a: 90,  r: 0.44, color: '#38BDF8', label: 'Signal',   num: '02' },
             { a: 180, r: 0.44, color: '#D97706', label: 'Grain',    num: '03' },
@@ -234,7 +236,7 @@ function Hero() {
           ]} />
 
           {/* Inner spin reversed */}
-          <OrbitSpin speed={140} reversed={true} nodes={[
+          <OrbitSpin reversed={true} nodes={[
             { a: 45,  r: 0.28, color: '#10B981', label: 'Meridian', num: '05' },
             { a: 135, r: 0.28, color: '#A855F7', label: 'Craft',    num: '06' },
             { a: 225, r: 0.28, color: '#6366F1', label: 'Lattice',  num: '07' },
@@ -326,21 +328,19 @@ function Hero() {
   )
 }
 
-function OrbitSpin({ speed, reversed, nodes }: {
-  speed: number; reversed: boolean
+function OrbitSpin({ reversed, nodes }: {
+  reversed: boolean
   nodes: { a: number; r: number; color: string; label: string; num: string }[]
 }) {
   return (
     <div className={`orbit-spin ${reversed ? 'orbit-spin-rev' : ''}`}>
       {nodes.map(n => {
-        const containerSize = 'min(90vw, 1000px)'
-        const rpx = `calc(${containerSize} * ${n.r})`
         return (
           <span key={n.label} className="orbit-node" style={{
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ['--a' as any]: `${n.a}deg`,
-            transform: `translate(-50%,-50%) rotate(${n.a}deg) translateY(calc(-1 * ${containerSize} * ${n.r})) rotate(${-n.a}deg)`,
-            animation: `orbitCounter ${speed}s linear infinite ${reversed ? 'reverse' : ''}`,
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ['--r' as any]: `calc(min(45vw, 500px) * -${n.r})`,
           } as React.CSSProperties}>
             <i className="orbit-dot" style={{ background: n.color }} />
             <span style={{ opacity: .38, fontSize: '.52rem' }}>{n.num}</span>
