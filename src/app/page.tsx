@@ -60,7 +60,7 @@ function Nav() {
           <span style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.04em' }}>Foundy.</span>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm">
-          {[['#process', 'How it works'], ['#genomes', 'Styles'], ['#pricing', 'Pricing'], ['#intake', 'Start']].map(([href, label]) => (
+          {[['#process', 'How it works'], ['#genomes', 'Styles'], ['#pricing', 'Pricing'], ['/genome', 'Genome quiz'], ['#intake', 'Start']].map(([href, label]) => (
             <a key={label} href={href} className="nav-link">{label}</a>
           ))}
         </nav>
@@ -177,7 +177,7 @@ function Hero() {
         <a href="#intake" className="btn-primary" style={{ fontSize: '0.93rem', padding: '0.9rem 2rem', lineHeight: 1 }}>
           Claim founding slot — £75/mo →
         </a>
-        <a href="#process" style={{
+        <a href="/genome" style={{
           display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
           fontSize: '0.93rem', padding: '0.9rem 2rem', lineHeight: 1,
           color: 'var(--mid)', textDecoration: 'none',
@@ -187,7 +187,7 @@ function Hero() {
           onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(10,10,11,0.25)'; e.currentTarget.style.color = 'var(--ink)' }}
           onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--mid)' }}
         >
-          See how it works
+          Find your genome →
         </a>
       </div>
 
@@ -1384,7 +1384,3 @@ export default function Home() {
     </>
   )
 }
-
-
-
-
