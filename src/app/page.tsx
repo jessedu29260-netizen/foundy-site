@@ -94,6 +94,9 @@ function Hero() {
       textAlign: 'center',
     }}>
 
+      {/* Orbit marks */}
+      <HeroOrbit />
+
       {/* Soft indigo bloom — top-right */}
       <div aria-hidden="true" style={{
         position: 'absolute', top: '-5%', right: '-8%',
@@ -245,6 +248,57 @@ function Hero() {
         </svg>
       </div>
     </section>
+  )
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO ORBIT
+═══════════════════════════════════════════════════════════════════════════ */
+
+const HERO_OUTER = [
+  { a: 10,  r: 0.42, color: '#A89070', label: 'Monument'  },
+  { a: 60,  r: 0.42, color: '#6B7FA3', label: 'Signal'    },
+  { a: 130, r: 0.42, color: '#8FAF8F', label: 'Grain'     },
+  { a: 195, r: 0.42, color: '#2D2D2D', label: 'Edge'      },
+  { a: 255, r: 0.42, color: '#7A6B5A', label: 'Meridian'  },
+  { a: 315, r: 0.42, color: '#B8956A', label: 'Craft'     },
+]
+const HERO_INNER = [
+  { a: 35,  r: 0.26, color: '#5B7FA6', label: 'Lattice'   },
+  { a: 155, r: 0.26, color: '#F59E0B', label: 'Current'   },
+  { a: 275, r: 0.26, color: '#A89070', label: 'G01'       },
+]
+
+function HeroOrbit() {
+  return (
+    <div className="orbit-wrap" aria-hidden="true">
+      {/* Outer ring */}
+      <div className="orbit-ring">
+        {HERO_OUTER.map(n => (
+          <span key={n.label} className="orbit-chip" style={{
+            ['--a' as any]: `${n.a}deg`,
+            ['--r' as any]: `calc(min(44vw, 490px) * -${n.r})`,
+            fontFamily: 'var(--font-dm-mono)',
+          } as React.CSSProperties}>
+            <i className="orbit-dot-sm" style={{ background: n.color }} />
+            {n.label}
+          </span>
+        ))}
+      </div>
+      {/* Inner ring — reversed */}
+      <div className="orbit-ring orbit-ring-rev">
+        {HERO_INNER.map(n => (
+          <span key={n.label} className="orbit-chip" style={{
+            ['--a' as any]: `${n.a}deg`,
+            ['--r' as any]: `calc(min(44vw, 490px) * -${n.r})`,
+            fontFamily: 'var(--font-dm-mono)',
+          } as React.CSSProperties}>
+            <i className="orbit-dot-sm" style={{ background: n.color }} />
+            {n.label}
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 

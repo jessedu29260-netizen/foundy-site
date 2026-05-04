@@ -303,3 +303,48 @@ h1, h2, h3 {
 .hero-h1 .split-word-wrap:nth-child(2) .split-word { animation-delay: 0.36s; }
 .hero-h1 .split-word-wrap:nth-child(3) .split-word { animation-delay: 0.42s; }
 
+
+/* ── Orbit animation (homepage hero + genome quiz) ────────────────────────── */
+@keyframes orbitSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orbitCounter {
+  from { transform: translate(-50%,-50%) rotate(var(--a)) translateY(var(--r)) rotate(calc(-1 * var(--a))); }
+  to   { transform: translate(-50%,-50%) rotate(var(--a)) translateY(var(--r)) rotate(calc(-1 * var(--a) - 360deg)); }
+}
+.orbit-wrap {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  animation: orbitSpin 90s linear infinite;
+  transform-origin: center;
+}
+.orbit-ring-rev {
+  animation-duration: 140s !important;
+  animation-direction: reverse !important;
+}
+.orbit-chip {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%) rotate(var(--a)) translateY(var(--r)) rotate(calc(-1 * var(--a)));
+  animation: orbitCounter 90s linear infinite;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px 5px 7px; border-radius: 100px;
+  background: rgba(245,244,240,.82); backdrop-filter: blur(6px);
+  border: 1px solid rgba(10,10,11,.07);
+  font-size: .58rem; letter-spacing: .1em; text-transform: uppercase;
+  box-shadow: 0 4px 18px rgba(10,10,11,.04); white-space: nowrap; color: #0A0A0B;
+}
+.orbit-ring-rev .orbit-chip {
+  animation-duration: 140s !important;
+  animation-direction: reverse !important;
+}
+.orbit-dot-sm {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+}
