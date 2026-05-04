@@ -3,286 +3,151 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Terms of Service — Foundy',
-  description: 'Terms and conditions for Foundy website subscription services.',
+  description: 'Terms governing your use of Foundy website management services.',
   robots: { index: true, follow: true },
 }
 
-const section: React.CSSProperties = {
-  marginBottom: '2.5rem',
-}
+const sections = [
+  {
+    title: '1. The service',
+    body: `Foundy provides turnkey website design, build, hosting, and management services to UK B2B professionals ("the Service"). By submitting a brief or subscribing to a plan, you agree to these Terms.
 
-const h2Style: React.CSSProperties = {
-  fontFamily: 'var(--font-fraunces)',
-  fontSize: '1.35rem',
-  fontWeight: 400,
-  letterSpacing: '-0.02em',
-  color: 'var(--ink)',
-  marginBottom: '0.85rem',
-  lineHeight: 1.2,
-}
+These Terms are governed by the laws of England and Wales. Any dispute shall be subject to the exclusive jurisdiction of the courts of England and Wales.`,
+  },
+  {
+    title: '2. Plans and pricing',
+    body: `We offer three plans:
 
-const pStyle: React.CSSProperties = {
-  fontSize: '0.9rem',
-  color: 'var(--mid)',
-  lineHeight: 1.78,
-  marginBottom: '0.85rem',
-}
+• Founding — £75/month (introductory; limited availability; 12-month minimum term)
+• Core — £90/month
+• Full — £175/month
 
-const ulStyle: React.CSSProperties = {
-  listStyle: 'none',
-  padding: 0,
-  margin: '0 0 0.85rem',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.45rem',
-}
+Prices are in GBP and exclusive of VAT where applicable. We reserve the right to adjust pricing on 30 days' written notice for month-to-month subscribers. Founding plan pricing is locked for the initial 12-month term.`,
+  },
+  {
+    title: '3. Payment',
+    body: `Subscriptions are billed monthly in advance via Stripe. Your first payment is taken when you approve your site preview. Invoices are issued automatically each billing cycle.
+
+Failed payments: we will retry twice. If payment fails after three attempts, the account is suspended. Reactivation requires settlement of outstanding amounts. We reserve the right to suspend or terminate accounts with payment disputes more than 14 days overdue.`,
+  },
+  {
+    title: '4. Your brief and content',
+    body: `You are responsible for:
+
+• Providing accurate business information in your brief.
+• Supplying any brand assets (logos, images) to which you hold the rights.
+• Ensuring that content you ask us to publish does not infringe third-party intellectual property, is not defamatory, and complies with applicable UK law.
+
+We reserve the right to decline to build or publish content we reasonably consider unlawful or harmful.`,
+  },
+  {
+    title: '5. Delivery and revisions',
+    body: `We aim to deliver a site preview within 3–5 business days of receiving a complete brief. Delivery timelines are estimates, not guarantees.
+
+Each plan includes a defined number of monthly content updates (see plan details). Structural changes (additional pages, new sections, redesigns) may require additional agreement. We will quote in writing before proceeding.`,
+  },
+  {
+    title: '6. Intellectual property',
+    body: `During your subscription, Foundy retains ownership of all site code, design systems, and infrastructure configurations. You are granted a non-exclusive licence to operate your site.
+
+After 12 months on any active plan, and upon written request, we will transfer the site repository and all associated assets to you ("Site Transfer"). You may then self-host or continue on subscription. The genome design system remains the intellectual property of Foundy; the transfer covers your specific site implementation.
+
+On cancellation before 12 months, we will provide a clean export of your content. The codebase transfer is conditional on completing a minimum 12-month term.`,
+  },
+  {
+    title: '7. Hosting and uptime',
+    body: `Sites are hosted on Vercel's Edge Network. We target 99.9% uptime but cannot guarantee uninterrupted service. Downtime caused by Vercel infrastructure, third-party DNS propagation, or events outside our control is excluded from any uptime commitments.
+
+SSL certificates, DNS management, and weekly health checks are included in all plans.`,
+  },
+  {
+    title: '8. Cancellation',
+    body: `You may cancel your subscription at any time with 30 days' written notice to hello@foundy.studio.
+
+On cancellation:
+• Your site remains live for the remainder of the current billing period.
+• We deliver a clean content export within 5 business days of your cancellation date.
+• The site is taken offline at end of the final billing period unless you arrange alternative hosting.
+• No refunds are issued for partial billing periods.
+
+We may terminate your subscription immediately if you breach these Terms, fail to pay, or engage in conduct harmful to Foundy or its clients.`,
+  },
+  {
+    title: '9. Limitation of liability',
+    body: `To the maximum extent permitted by law, Foundy's total liability to you in connection with the Service shall not exceed the total fees paid in the 3 months preceding the claim.
+
+We are not liable for: loss of profit, loss of business, business interruption, loss of data, or indirect or consequential losses, even if advised of the possibility of such loss.
+
+Nothing in these Terms excludes liability for death or personal injury caused by negligence, or for fraud.`,
+  },
+  {
+    title: '10. Changes to these Terms',
+    body: `We may update these Terms. We will notify you by email at least 14 days before changes take effect for active subscribers. Continued use of the Service after the effective date constitutes acceptance of the updated Terms.`,
+  },
+  {
+    title: '11. Contact',
+    body: `Questions about these Terms: hello@foundy.studio. We aim to respond within 2 business days.`,
+  },
+]
 
 export default function TermsPage() {
   return (
-    <div style={{ background: 'var(--paper)', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--paper)', minHeight: '100vh', padding: '6rem 1.5rem 5rem' }}>
+      <div style={{ maxWidth: '720px', margin: '0 auto' }}>
 
-      {/* Minimal nav */}
-      <header style={{
-        borderBottom: '1px solid var(--border)',
-        padding: '1.25rem 0',
-        background: 'var(--paper)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100,
-      }}>
-        <div className="max-w-content mx-auto px-6 flex items-center justify-between">
-          <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none', color: 'inherit' }} aria-label="Foundy home">
-            <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <rect width="32" height="32" rx="5" fill="#0A0A0B"/>
-              <rect x="8" y="6.5" width="3.5" height="18.5" fill="#F5F4F0"/>
-              <rect x="8" y="6.5" width="16" height="3" fill="#F5F4F0"/>
-              <rect x="8" y="13.5" width="11" height="2.75" fill="#F5F4F0"/>
-              <rect x="12.5" y="26.5" width="9.5" height="2" rx="1" fill="#6366F1"/>
-            </svg>
-            <span style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.1rem', letterSpacing: '-0.04em', fontWeight: 400 }}>Foundy.</span>
-          </Link>
-          <Link href="/" style={{ fontSize: '0.8rem', color: 'var(--mid)', textDecoration: 'none', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.04em' }}>
-            ← Back
-          </Link>
-        </div>
-      </header>
-
-      {/* Content */}
-      <main style={{ maxWidth: '680px', margin: '0 auto', padding: 'clamp(3rem, 6vw, 5rem) 1.5rem clamp(4rem, 8vw, 7rem)' }}>
+        {/* Back */}
+        <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none', letterSpacing: '0.04em', marginBottom: '3rem' }}>
+          ← foundy.studio
+        </Link>
 
         {/* Header */}
         <div style={{ marginBottom: '3.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--border)' }}>
-          <p style={{ fontFamily: 'var(--font-dm-mono)', fontSize: '0.65rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--faint)', marginBottom: '1rem' }}>
+          <p style={{ fontSize: '0.68rem', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--faint)', marginBottom: '1rem' }}>
             Legal
           </p>
-          <h1 style={{
-            fontFamily: 'var(--font-fraunces)',
-            fontSize: 'clamp(2rem, 5vw, 3rem)',
-            fontWeight: 400,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.08,
-            color: 'var(--ink)',
-            marginBottom: '1rem',
-          }}>
+          <h1 style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: '1rem', color: 'var(--ink)' }}>
             Terms of Service
           </h1>
           <p style={{ fontSize: '0.8rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>
-            Last updated: 1 May 2026
+            Last updated: 4 May 2026
           </p>
         </div>
 
         {/* Intro */}
-        <div style={section}>
-          <p style={pStyle}>
-            These Terms of Service ("Terms") govern your use of Foundy&apos;s website subscription
-            services, available at fundy.studio. By submitting a brief and subscribing to a plan,
-            you agree to these Terms in full.
-          </p>
-          <p style={pStyle}>
-            "Foundy", "we", "us", and "our" refer to Foundy (trading name, UK). "You" and "client"
-            refer to the individual or business purchasing a subscription.
-          </p>
+        <p style={{ fontSize: '0.95rem', color: 'var(--mid)', lineHeight: 1.75, marginBottom: '3rem' }}>
+          These Terms of Service ("Terms") govern your use of the Foundy website management service. Please read them carefully before submitting a brief or making payment. By using the Service you agree to these Terms in full.
+        </p>
+
+        {/* Sections */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+          {sections.map((s) => (
+            <div key={s.title} style={{ borderTop: '1px solid var(--border)', paddingTop: '2rem' }}>
+              <h2 style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '1rem', fontWeight: 600, marginBottom: '0.875rem', color: 'var(--ink)' }}>
+                {s.title}
+              </h2>
+              <p style={{ fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.78, whiteSpace: 'pre-line' }}>
+                {s.body}
+              </p>
+            </div>
+          ))}
         </div>
 
-        {/* Section 1 */}
-        <div style={section}>
-          <h2 style={h2Style}>1. The service</h2>
-          <p style={pStyle}>
-            Foundy provides a turnkey website subscription service for UK B2B professionals. The service
-            includes domain management, DNS configuration, SSL certificate, website design and build,
-            Vercel hosting, and ongoing maintenance as specified per plan.
-          </p>
-          <p style={pStyle}>
-            <strong style={{ color: 'var(--ink)' }}>Core plan (£90/mo)</strong> includes: domain managed,
-            DNS and SSL handled, 1–5 page site, genome-matched design, 1 content update per month,
-            weekly health check, and Vercel hosting.
-          </p>
-          <p style={pStyle}>
-            <strong style={{ color: 'var(--ink)' }}>Full plan (£175/mo)</strong> includes: everything in
-            Core, plus 4 content updates per month, monthly report card PDF, 48-hour support SLA, and
-            a blog or news section.
-          </p>
-          <p style={pStyle}>
-            <strong style={{ color: 'var(--ink)' }}>Founding plan (£75/mo)</strong> includes: everything
-            in Core, priority genome selection, 12-month price lock, and direct founder access.
-            Available to founding clients only.
-          </p>
+        {/* Footer note */}
+        <div style={{ marginTop: '4rem', paddingTop: '2rem', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+          <span style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>
+            © 2026 Foundy · UK
+          </span>
+          <div style={{ display: 'flex', gap: '1.5rem' }}>
+            <Link href="/privacy" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
+              Privacy Policy
+            </Link>
+            <Link href="mailto:hello@foundy.studio" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
+              hello@foundy.studio
+            </Link>
+          </div>
         </div>
 
-        {/* Section 2 */}
-        <div style={section}>
-          <h2 style={h2Style}>2. Payment and billing</h2>
-          <p style={pStyle}>
-            Subscriptions are billed monthly in advance via Stripe. Your first payment is taken at
-            checkout. Subsequent payments are collected automatically on the same date each month.
-          </p>
-          <p style={pStyle}>
-            Site preview is provided before your first payment is due. No payment is taken until
-            you approve the design preview. Once approved and payment confirmed, we proceed to go-live.
-          </p>
-          <p style={pStyle}>
-            All prices are inclusive of UK VAT where applicable. Domain renewal costs are included
-            in your subscription. We will notify you of any price changes with 30 days notice.
-          </p>
-        </div>
-
-        {/* Section 3 */}
-        <div style={section}>
-          <h2 style={h2Style}>3. Cancellation</h2>
-          <p style={pStyle}>
-            You may cancel your subscription at any time with 30 days written notice to
-            {' '}<a href="mailto:hello@fundy.studio" style={{ color: 'var(--accent)', textDecoration: 'none' }}>hello@fundy.studio</a>.
-            Your site will remain live until the end of the current billing period.
-          </p>
-          <p style={pStyle}>
-            On cancellation, we will provide a clean handover: the full codebase, all assets, DNS
-            transfer instructions, and any third-party credentials. No exit fees. No lock-in.
-          </p>
-          <p style={pStyle}>
-            We reserve the right to cancel the service immediately in cases of non-payment, abuse,
-            or use of the service for unlawful purposes. In such cases, a full data handover will
-            still be provided.
-          </p>
-        </div>
-
-        {/* Section 4 */}
-        <div style={section}>
-          <h2 style={h2Style}>4. Ownership and intellectual property</h2>
-          <p style={pStyle}>
-            All content you provide (text, logos, imagery) remains your property. We require a
-            licence to use this content to build and maintain your site.
-          </p>
-          <p style={pStyle}>
-            After 12 consecutive months on any plan, the full codebase and all assets are transferred
-            to you outright. You may then self-host or continue on a maintenance subscription. The
-            transfer is initiated automatically at the 12-month anniversary.
-          </p>
-          <p style={pStyle}>
-            Prior to the 12-month mark, Foundy retains ownership of the codebase. On early cancellation,
-            we provide the codebase and all assets as part of the handover package.
-          </p>
-          <p style={pStyle}>
-            Foundy retains the right to include completed sites in its portfolio unless you request
-            otherwise in writing.
-          </p>
-        </div>
-
-        {/* Section 5 */}
-        <div style={section}>
-          <h2 style={h2Style}>5. Delivery and timelines</h2>
-          <p style={pStyle}>
-            We aim to deliver a site preview within 3–5 business days of receiving your brief. This
-            is a target, not a guarantee. Timelines may vary based on brief complexity and current
-            workload. You will be informed of any delay.
-          </p>
-          <p style={pStyle}>
-            Content updates included in your plan are fulfilled within 5 business days of request.
-            Full plan 48-hour SLA applies to support requests, not content updates.
-          </p>
-        </div>
-
-        {/* Section 6 */}
-        <div style={section}>
-          <h2 style={h2Style}>6. Your responsibilities</h2>
-          <p style={pStyle}>You agree to:</p>
-          <ul style={ulStyle}>
-            {[
-              'Provide accurate information in your brief and intake form',
-              'Ensure all content and assets you supply are owned by you or properly licensed',
-              'Not use the service to publish unlawful, defamatory, or harmful content',
-              'Notify us promptly of changes that affect your site (business name changes, contact updates)',
-              'Respond to preview approval requests within 10 business days',
-            ].map(item => (
-              <li key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.6rem', fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.65 }}>
-                <span style={{ color: 'var(--accent)', fontSize: '0.55rem', flexShrink: 0, marginTop: '0.4em' }}>✦</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Section 7 */}
-        <div style={section}>
-          <h2 style={h2Style}>7. Liability</h2>
-          <p style={pStyle}>
-            Foundy&apos;s liability is limited to the monthly subscription fees paid in the 3 months
-            prior to any claim. We are not liable for loss of business, revenue, or data arising from
-            third-party service outages (Vercel, Stripe, Porkbun, etc.).
-          </p>
-          <p style={pStyle}>
-            We maintain 99.9% uptime targets via Vercel&apos;s infrastructure. Planned maintenance
-            is performed during off-peak hours with advance notice.
-          </p>
-        </div>
-
-        {/* Section 8 */}
-        <div style={section}>
-          <h2 style={h2Style}>8. Governing law</h2>
-          <p style={pStyle}>
-            These Terms are governed by the laws of England and Wales. Any disputes shall be subject
-            to the exclusive jurisdiction of the courts of England and Wales.
-          </p>
-        </div>
-
-        {/* Section 9 */}
-        <div style={section}>
-          <h2 style={h2Style}>9. Changes to these Terms</h2>
-          <p style={pStyle}>
-            We may update these Terms from time to time. Material changes will be communicated to
-            active subscribers by email with 30 days notice before they take effect. Continued use
-            of the service after that date constitutes acceptance of the updated Terms.
-          </p>
-        </div>
-
-        {/* Contact */}
-        <div style={{
-          marginTop: '3rem',
-          padding: '1.75rem 2rem',
-          background: 'var(--paper-warm)',
-          border: '1px solid var(--border)',
-          borderRadius: '8px',
-        }}>
-          <p style={{ fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.7, margin: 0 }}>
-            Questions about these Terms?{' '}
-            <a href="mailto:hello@fundy.studio" style={{ color: 'var(--accent)', textDecoration: 'none' }}>hello@fundy.studio</a>
-            {' '}— we respond within 24 hours.
-          </p>
-        </div>
-
-      </main>
-
-      {/* Footer */}
-      <footer style={{ borderTop: '1px solid var(--border)', padding: '2rem 0', background: 'var(--paper-deep)' }}>
-        <div className="max-w-content mx-auto px-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <p style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>© 2026 Foundy · UK</p>
-          <nav style={{ display: 'flex', gap: '1.5rem' }}>
-            {[['/', 'Home'], ['/privacy', 'Privacy'], ['/terms', 'Terms']].map(([href, label]) => (
-              <Link key={label} href={href} style={{ fontSize: '0.75rem', color: 'var(--mid)', textDecoration: 'none' }}>{label}</Link>
-            ))}
-          </nav>
-        </div>
-      </footer>
-
+      </div>
     </div>
   )
 }

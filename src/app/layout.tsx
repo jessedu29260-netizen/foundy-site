@@ -1,13 +1,13 @@
 import type { Metadata } from 'next'
-import { Fraunces, DM_Sans, DM_Mono } from 'next/font/google'
+import { Newsreader, DM_Sans, DM_Mono } from 'next/font/google'
 import { LenisProvider } from '@/providers/lenis-provider'
 import './globals.css'
 
-const fraunces = Fraunces({
+const newsreader = Newsreader({
   subsets: ['latin'],
-  variable: '--font-fraunces',
+  variable: '--font-newsreader',
   display: 'swap',
-  axes: ['SOFT', 'WONK'],
+  style: ['normal', 'italic'],
 })
 
 const dmSans = DM_Sans({
@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en-GB"
-      className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable}`}
+      className={`${newsreader.variable} ${dmSans.variable} ${dmMono.variable}`}
     >
       <body>
         <LenisProvider>{children}</LenisProvider>
@@ -56,4 +56,5 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
 

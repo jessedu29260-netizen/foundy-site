@@ -57,7 +57,7 @@ function Nav() {
             <rect x="8" y="13.5" width="11" height="2.75" fill="#F5F4F0"/>
             <rect x="12.5" y="26.5" width="9.5" height="2" rx="1" fill="#6366F1"/>
           </svg>
-          <span style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.04em' }}>Foundy.</span>
+          <span style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.15rem', fontWeight: 400, letterSpacing: '-0.04em' }}>Foundy.</span>
         </a>
         <nav className="hidden md:flex items-center gap-7 text-sm">
           {[['#process', 'How it works'], ['#genomes', 'Styles'], ['#pricing', 'Pricing'], ['#intake', 'Start']].map(([href, label]) => (
@@ -150,7 +150,7 @@ function Hero() {
         tag="h1"
         className="hero-h1"
         style={{
-          fontFamily: 'var(--font-fraunces)',
+          fontFamily: 'var(--font-newsreader)',
           fontSize: 'clamp(3rem, 8.5vw, 7.8rem)',
           fontWeight: 400,
           letterSpacing: '-0.032em',
@@ -169,8 +169,7 @@ function Hero() {
         lineHeight: 1.65,
         margin: '0 auto 2.75rem',
       }}>
-        Turnkey websites for UK B2B professionals. Domain, DNS, design, build,
-        and everything after — on a monthly subscription. You brief us once. We handle everything after.
+        Turnkey websites for UK B2B professionals. Domain, DNS, design, build, and ongoing management — one monthly subscription. You brief us once. We run it. After 12 months, the site is yours outright.
       </p>
 
       {/* CTAs */}
@@ -213,7 +212,7 @@ function Hero() {
           <div key={m.n} className="hero-metric" style={{ textAlign: 'center', animation: `heroFadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${(0.78 + idx * 0.07).toFixed(2)}s both` }}>
             <span style={{
               display: 'block',
-              fontFamily: 'var(--font-fraunces)',
+              fontFamily: 'var(--font-newsreader)',
               fontSize: 'clamp(1.8rem, 3.8vw, 2.9rem)',
               fontWeight: 400,
               letterSpacing: '-0.04em',
@@ -398,7 +397,7 @@ function ForWho() {
         <p className="section-number fw-head mb-5" style={{ color: 'rgba(245,244,240,0.32)' }}>01 / Built for</p>
         <div className="grid md:grid-cols-[1fr_2fr] gap-10 mb-14">
           <W text="Who this is for." tag="h2" className="fw-head"
-            style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(2rem, 4.5vw, 3.6rem)', fontWeight: 400, letterSpacing: '-0.03em', lineHeight: 1.06 }}
+            style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(2rem, 4.5vw, 3.6rem)', fontWeight: 400, letterSpacing: '-0.03em', lineHeight: 1.06 }}
           />
           <p className="fw-head" style={{ color: 'rgba(245,244,240,0.44)', fontSize: '0.95rem', lineHeight: 1.72, alignSelf: 'end', maxWidth: '48ch' }}>
             Foundy exists for UK B2B professionals who understand that a credible web presence is infrastructure, not decoration — and who have better things to do than manage a website.
@@ -428,7 +427,7 @@ function ForWho() {
               <span style={{ display: 'block', fontFamily: 'var(--font-dm-mono)', fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(245,244,240,0.24)', marginBottom: '1.1rem' }}>
                 {p.n}
               </span>
-              <h3 style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.3rem', fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--paper)', marginBottom: '0.75rem' }}>
+              <h3 style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.3rem', fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--paper)', marginBottom: '0.75rem' }}>
                 {p.role}
               </h3>
               <p style={{ fontSize: '0.875rem', color: 'rgba(245,244,240,0.42)', lineHeight: 1.68 }}>
@@ -469,7 +468,7 @@ function Comparison() {
         <p className="section-number cmp-head mb-5">02 / The case</p>
         <div className="grid md:grid-cols-[1fr_2fr] gap-12 mb-12">
           <W text="Why not just do it yourself?" tag="h2" className="cmp-head"
-            style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.8rem, 3.6vw, 2.85rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.1 }}
+            style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.8rem, 3.6vw, 2.85rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.1 }}
           />
           <p className="cmp-head" style={{ color: 'var(--mid)', fontSize: '0.93rem', lineHeight: 1.72, alignSelf: 'end', maxWidth: '46ch' }}>
             You could use Squarespace. The question is whether your time is worth £90 a month, and whether a template shared by a thousand other consultants is the right signal to send.
@@ -522,7 +521,7 @@ function Process() {
       <div className="max-w-content mx-auto px-6">
         <p className="section-number proc-head mb-5">03 / The process</p>
         <W text="Three steps. Zero ongoing effort." tag="h2" className="proc-head"
-          style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem, 4vw, 3.25rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: 'clamp(3rem, 6vw, 5.5rem)', maxWidth: '20ch' }}
+          style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.9rem, 4vw, 3.25rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: 'clamp(3rem, 6vw, 5.5rem)', maxWidth: '20ch' }}
         />
         <div className="grid md:grid-cols-3 gap-8 md:gap-6">
           {steps.map(s => (
@@ -530,7 +529,7 @@ function Process() {
               {/* Oversized watermark number */}
               <span aria-hidden="true" style={{
                 position: 'absolute', top: '-0.55rem', left: '-0.2rem',
-                fontFamily: 'var(--font-fraunces)',
+                fontFamily: 'var(--font-newsreader)',
                 fontSize: 'clamp(5.5rem, 13vw, 11rem)',
                 fontWeight: 400,
                 color: 'var(--ink)',
@@ -541,7 +540,7 @@ function Process() {
                 letterSpacing: '-0.04em',
               }}>{s.n}</span>
               <span style={{ display: 'block', fontFamily: 'var(--font-dm-mono)', fontSize: '0.63rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--faint)', marginBottom: '0.8rem' }}>Step {s.n}</span>
-              <h3 style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.35rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '0.85rem', color: 'var(--ink)' }}>{s.title}</h3>
+              <h3 style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.35rem', fontWeight: 400, letterSpacing: '-0.02em', marginBottom: '0.85rem', color: 'var(--ink)' }}>{s.title}</h3>
               <p style={{ fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.7, marginBottom: '1rem' }}>{s.body}</p>
               <p style={{ fontSize: '0.75rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', letterSpacing: '0.04em' }}>{s.note}</p>
             </div>
@@ -578,7 +577,7 @@ function Genomes() {
         <p className="section-number gen-head mb-5" style={{ color: 'rgba(245,244,240,0.3)' }}>04 / Design identities</p>
         <div className="grid md:grid-cols-[1fr_2fr] gap-10 mb-12">
           <W text="Eight genomes. One matched to you." tag="h2" className="gen-head"
-            style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08 }}
+            style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.9rem, 4vw, 3rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08 }}
           />
           <p className="gen-head" style={{ color: 'rgba(245,244,240,0.42)', fontSize: '0.93rem', lineHeight: 1.72, alignSelf: 'end', maxWidth: '46ch' }}>
             A genome is not a template. It is a complete design identity — typographic system, colour palette, spacing logic, component hierarchy — built for a specific type of business. We select yours from your brief, not a dropdown.
@@ -615,7 +614,7 @@ function Genomes() {
                 padding: '0.22rem 0.6rem', borderRadius: '100px',
                 background: `${g.color}18`, border: `1px solid ${g.color}30`,
               }}>{g.id}</span>
-              <h3 style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.18rem', fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--paper)', marginBottom: '0.5rem', lineHeight: 1.2 }}>{g.name}</h3>
+              <h3 style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.18rem', fontWeight: 400, letterSpacing: '-0.02em', color: 'var(--paper)', marginBottom: '0.5rem', lineHeight: 1.2 }}>{g.name}</h3>
               <p style={{ fontSize: '0.72rem', color: 'rgba(245,244,240,0.32)', fontFamily: 'var(--font-dm-mono)', lineHeight: 1.55 }}>{g.suit}</p>
             </div>
           ))}
@@ -684,7 +683,7 @@ function GenomeInterrupt() {
               ))}
             </div>
             <h2 style={{
-              fontFamily: 'var(--font-fraunces)',
+              fontFamily: 'var(--font-newsreader)',
               fontSize: 'clamp(1.85rem, 3.8vw, 2.85rem)',
               fontWeight: 400, letterSpacing: '-0.03em', lineHeight: 1.1,
               marginBottom: '1rem',
@@ -706,7 +705,7 @@ function GenomeInterrupt() {
             {status === 'success' ? (
               <div style={{ textAlign: 'center', padding: '1.75rem 0' }}>
                 <span style={{ display: 'block', color: 'var(--accent)', fontSize: '1.4rem', marginBottom: '1rem' }}>✦</span>
-                <p style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.25rem', letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
+                <p style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.25rem', letterSpacing: '-0.02em', marginBottom: '0.75rem' }}>
                   Genome on its way.
                 </p>
                 <p style={{ fontSize: '0.8rem', color: 'rgba(245,244,240,0.38)', fontFamily: 'var(--font-dm-mono)', lineHeight: 1.6 }}>
@@ -774,7 +773,7 @@ function SocialProof() {
       <div className="max-w-content mx-auto px-6">
         <p className="section-number prf-head mb-5">05 / Client voices</p>
         <W text="What clients say." tag="h2" className="prf-head"
-          style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}
+          style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: 'clamp(2.5rem, 5vw, 4rem)' }}
         />
         {/* Star rating row */}
         <div className="prf-head" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap', marginBottom: 'clamp(2rem, 4vw, 3.5rem)' }}>
@@ -815,7 +814,7 @@ function SocialProof() {
               {/* Decorative quotation mark watermark */}
               <span aria-hidden="true" style={{
                 position: 'absolute', top: '0.8rem', right: '1.25rem',
-                fontFamily: 'var(--font-fraunces)',
+                fontFamily: 'var(--font-newsreader)',
                 fontSize: '5.5rem',
                 lineHeight: 1,
                 color: 'var(--ink)',
@@ -834,7 +833,7 @@ function SocialProof() {
               </div>
 
               <p style={{
-                fontFamily: 'var(--font-fraunces)',
+                fontFamily: 'var(--font-newsreader)',
                 fontSize: '0.98rem',
                 fontWeight: 400,
                 lineHeight: 1.62,
@@ -898,7 +897,7 @@ function Pricing() {
         <p className="section-number mb-5">06 / Investment</p>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <W text="Three plans. One service." tag="h2" className="pri-h2"
-            style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', fontWeight: 400, maxWidth: '22ch', letterSpacing: '-0.028em' }}
+            style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.9rem, 3.8vw, 2.9rem)', fontWeight: 400, maxWidth: '22ch', letterSpacing: '-0.028em' }}
           />
           <p className="text-sm max-w-xs" style={{ color: 'var(--mid)', lineHeight: 1.7 }}>
             After 12 months on any plan, the codebase is yours outright — take the repo and self-host, or stay on subscription.
@@ -998,7 +997,7 @@ function FAQ() {
         <div className="grid md:grid-cols-[1fr_2fr] gap-16 items-start">
           <div style={{ position: 'sticky', top: '5rem' }}>
             <p className="section-number mb-5">07 / Questions</p>
-            <h2 style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem,3.5vw,2.6rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.1, marginBottom: '1.5rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.9rem,3.5vw,2.6rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.1, marginBottom: '1.5rem' }}>
               Everything you want to know.
             </h2>
             <p style={{ fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.7 }}>
@@ -1044,7 +1043,7 @@ function CTABand() {
       <div className="max-w-content mx-auto px-6 text-center" style={{ position: 'relative', zIndex: 1 }}>
         <div className="cta-inner">
           <p className="section-number mb-5" style={{ color: 'rgba(245,244,240,0.3)', textAlign: 'center' }}>08 / Begin</p>
-          <h2 style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(2.2rem,5.5vw,4.5rem)', fontWeight: 400, letterSpacing: '-0.032em', lineHeight: 1.05, maxWidth: '18ch', margin: '0 auto 1.5rem' }}>
+          <h2 style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(2.2rem,5.5vw,4.5rem)', fontWeight: 400, letterSpacing: '-0.032em', lineHeight: 1.05, maxWidth: '18ch', margin: '0 auto 1.5rem' }}>
             Ready to stop thinking about your website?
           </h2>
           <p style={{ color: 'rgba(245,244,240,0.42)', fontSize: 'clamp(0.95rem,1.5vw,1.05rem)', maxWidth: '42ch', margin: '0 auto 2.75rem', lineHeight: 1.65 }}>
@@ -1114,7 +1113,7 @@ function Intake() {
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="int-l">
             <p className="section-number mb-5">09 / Your brief</p>
-            <h2 style={{ fontFamily: 'var(--font-fraunces)', fontSize: 'clamp(1.9rem,3.8vw,2.9rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: '1.25rem' }}>
+            <h2 style={{ fontFamily: 'var(--font-newsreader)', fontSize: 'clamp(1.9rem,3.8vw,2.9rem)', fontWeight: 400, letterSpacing: '-0.028em', lineHeight: 1.08, marginBottom: '1.25rem' }}>
               Tell us what you do.<br />We handle the rest.
             </h2>
             <p style={{ fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.72, marginBottom: '2rem' }}>
@@ -1201,7 +1200,7 @@ function Footer() {
                 <rect x="8" y="13.5" width="11" height="2.75" fill="#F5F4F0"/>
                 <rect x="12.5" y="26.5" width="9.5" height="2" rx="1" fill="#6366F1"/>
               </svg>
-              <span style={{ fontFamily: 'var(--font-fraunces)', fontSize: '1.15rem', letterSpacing: '-0.04em', fontWeight: 400 }}>Foundy.</span>
+              <span style={{ fontFamily: 'var(--font-newsreader)', fontSize: '1.15rem', letterSpacing: '-0.04em', fontWeight: 400 }}>Foundy.</span>
             </a>
             <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>Turnkey websites for UK B2B professionals</span>
           </div>
@@ -1385,5 +1384,7 @@ export default function Home() {
     </>
   )
 }
+
+
 
 
