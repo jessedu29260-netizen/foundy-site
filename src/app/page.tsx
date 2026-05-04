@@ -170,7 +170,7 @@ function Hero() {
         margin: '0 auto 2.75rem',
       }}>
         Turnkey websites for UK B2B professionals. Domain, DNS, design, build,
-        and everything after — on a monthly subscription. You brief us once. We own it forever.
+        and everything after — on a monthly subscription. You brief us once. We handle everything after.
       </p>
 
       {/* CTAs */}
@@ -1213,7 +1213,17 @@ function Footer() {
               >{label}</a>
             ))}
           </nav>
-          <p style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>© 2026 Foundy · UK</p>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.5rem' }}>
+            <p style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>© 2026 Foundy · UK</p>
+            <div style={{ display: 'flex', gap: '1rem' }}>
+              {[['/privacy', 'Privacy'], ['/terms', 'Terms']].map(([href, label]) => (
+                <a key={label} href={href} style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none', letterSpacing: '0.03em' }}
+                  onMouseEnter={e => { e.currentTarget.style.color = 'var(--mid)' }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'var(--faint)' }}
+                >{label}</a>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </footer>
