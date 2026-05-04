@@ -243,19 +243,7 @@ function Hero() {
             { a: 315, r: 0.28, color: '#F59E0B', label: 'Current',  num: '08' },
           ]} />
 
-          {/* Centre mark */}
-          <div style={{
-            position: 'absolute', left: '50%', top: '50%',
-            transform: 'translate(-50%,-50%)',
-            width: '72px', height: '72px', borderRadius: '50%',
-            background: 'var(--ink)', color: 'var(--paper)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            fontFamily: 'var(--font-fraunces)', fontSize: '1.3rem', fontStyle: 'italic', fontWeight: 300,
-            boxShadow: '0 0 0 6px rgba(10,10,11,.04), 0 16px 40px rgba(10,10,11,.15)',
-          }}>
-            <div style={{ position: 'absolute', inset: '-12px', borderRadius: '50%', border: '1px solid rgba(99,102,241,.28)', animation: 'centerPulse 3s ease-in-out infinite' }} />
-            f.
-          </div>
+          {/* Centre mark removed */}
         </div>
 
         {/* Floating preview chips */}
