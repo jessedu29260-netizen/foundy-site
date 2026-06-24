@@ -17,3 +17,17 @@
 .DS_Store
 *.pem
 npm-debug.log*
+
+# TypeScript build artifacts
+*.tsbuildinfo
+
+# Shared master secrets (hard-linked vault)
+secrets/
+.env.master
+.env.*
+API_VAULT.md
+
+# brain_v2 cockpit - DO NOT COMMIT - contains plaintext API credentials
+MEMORY_MASTER.xlsx
+MEMORY_MASTER.bak.*.xlsx
+MEMORY_MASTER.staging.xlsx
