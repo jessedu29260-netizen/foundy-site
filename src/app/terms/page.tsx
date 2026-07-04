@@ -62,7 +62,7 @@ SSL certificates, DNS management, and weekly health checks are included in all p
   },
   {
     title: '8. Cancellation',
-    body: `You may cancel your subscription at any time with 30 days' written notice to hello@foundy.studio.
+    body: `You may cancel your subscription at any time with 30 days' written notice to hello@fundy.studio.
 
 On cancellation:
 • Your site remains live for the remainder of the current billing period.
@@ -86,7 +86,7 @@ Nothing in these Terms excludes liability for death or personal injury caused by
   },
   {
     title: '11. Contact',
-    body: `Questions about these Terms: hello@foundy.studio. We aim to respond within 2 business days.`,
+    body: `Questions about these Terms: hello@fundy.studio. We aim to respond within 2 business days.`,
   },
 ]
 
@@ -97,7 +97,7 @@ export default function TermsPage() {
 
         {/* Back */}
         <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none', letterSpacing: '0.04em', marginBottom: '3rem' }}>
-          ← foundy.studio
+          ← fundy.studio
         </Link>
 
         {/* Header */}
@@ -141,8 +141,8 @@ export default function TermsPage() {
             <Link href="/privacy" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
               Privacy Policy
             </Link>
-            <Link href="mailto:hello@foundy.studio" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
-              hello@foundy.studio
+            <Link href="mailto:hello@fundy.studio" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
+              hello@fundy.studio
             </Link>
           </div>
         </div>

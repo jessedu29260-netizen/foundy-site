@@ -928,7 +928,7 @@ function Pricing() {
     {
       name: 'Founding', price: '£75', period: '/mo · 12-month lock', tag: '5 slots remaining',
       features: ['Everything in Core', 'Priority genome selection', '12-month price lock', 'Case study rights (mutual)', 'Direct founder access'],
-      cta: 'Claim founding slot →', featured: true, note: 'Saves £180 vs Core. Closes 2026-05-09.',
+      cta: 'Claim founding slot →', featured: true, note: 'Saves £180 vs Core.',
       link: 'https://buy.stripe.com/5kQ3co9RVeeS6iSd6R4c80l',
     },
     {
@@ -1056,7 +1056,7 @@ function FAQ() {
             </h2>
             <p style={{ fontSize: '0.875rem', color: 'var(--mid)', lineHeight: 1.7 }}>
               Still have a question?{' '}
-              <a href="mailto:hello@foundy.studio" style={{ color: 'var(--accent)', textDecoration: 'none' }}>hello@foundy.studio</a>
+              <a href="mailto:hello@fundy.studio" style={{ color: 'var(--accent)', textDecoration: 'none' }}>hello@fundy.studio</a>
               . We respond within 24 hours.
             </p>
           </div>
@@ -1105,7 +1105,7 @@ function CTABand() {
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.875rem', justifyContent: 'center' }}>
             <a href="#intake" className="btn-primary" style={{ fontSize: '0.95rem', padding: '0.95rem 2rem' }}>Claim founding slot — £75/mo →</a>
-            <a href="mailto:hello@foundy.studio" className="btn-ghost" style={{ fontSize: '0.95rem', padding: '0.95rem 2rem' }}>Ask a question first</a>
+            <a href="mailto:hello@fundy.studio" className="btn-ghost" style={{ fontSize: '0.95rem', padding: '0.95rem 2rem' }}>Ask a question first</a>
           </div>
         </div>
       </div>
@@ -1219,7 +1219,7 @@ function Intake() {
               </button>
               {status === 'error' && (
                 <p style={{ fontSize: '0.72rem', color: '#c0392b', textAlign: 'center', fontFamily: 'var(--font-dm-mono)' }}>
-                  Something went wrong — please try again or email hello@foundy.studio
+                  Something went wrong — please try again or email hello@fundy.studio
                 </p>
               )}
               <p style={{ fontSize: '0.7rem', color: 'var(--faint)', textAlign: 'center', fontFamily: 'var(--font-dm-mono)' }}>
@@ -1259,7 +1259,7 @@ function Footer() {
             <span style={{ display: 'block', fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)' }}>Turnkey websites for UK B2B professionals</span>
           </div>
           <nav style={{ display: 'flex', flexWrap: 'wrap', gap: '1.5rem' }}>
-            {[['#process', 'Process'], ['#genomes', 'Genomes'], ['#pricing', 'Pricing'], ['#faq', 'FAQ'], ['mailto:hello@foundy.studio', 'Contact']].map(([href, label]) => (
+            {[['#process', 'Process'], ['#genomes', 'Genomes'], ['#pricing', 'Pricing'], ['#faq', 'FAQ'], ['mailto:hello@fundy.studio', 'Contact']].map(([href, label]) => (
               <a key={label} href={href} style={{ fontSize: '0.875rem', color: 'var(--mid)', textDecoration: 'none' }}
                 onMouseEnter={e => { e.currentTarget.style.color = 'var(--ink)' }}
                 onMouseLeave={e => { e.currentTarget.style.color = 'var(--mid)' }}

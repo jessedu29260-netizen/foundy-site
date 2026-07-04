@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   title: 'Foundy — Your website, managed.',
   description:
     'Turnkey B2B websites for UK consultants. Domain, DNS, design, build, and everything after. £90 per month.',
-  metadataBase: new URL('https://foundy.studio'),
+  metadataBase: new URL('https://fundy.studio'),
   openGraph: {
     title: 'Foundy — Your website, managed.',
     description: 'Turnkey B2B websites for UK consultants. One brief. We handle the rest. £90/month.',
-    url: 'https://foundy.studio',
+    url: 'https://fundy.studio',
     siteName: 'Foundy',
     locale: 'en_GB',
     type: 'website',

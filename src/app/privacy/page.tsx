@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const sections = [
   {
     title: '1. Who we are',
-    body: `Foundy is a trading name of [Company Name] ("we", "us", "our"). We provide turnkey website design, build, and management services to UK B2B professionals. Our registered office is at [Address], United Kingdom. Questions about this policy: hello@foundy.studio.`,
+    body: `Foundy is a trading name of [Company Name] ("we", "us", "our"). We provide turnkey website design, build, and management services to UK B2B professionals. Our registered office is at [Address], United Kingdom. Questions about this policy: hello@fundy.studio.`,
   },
   {
     title: '2. Data we collect',
@@ -19,7 +19,7 @@ const sections = [
 • Contact data: name, work email address, and business description submitted via our brief or waitlist forms.
 • Usage data: anonymised analytics (page views, scroll depth, referral source) via a privacy-first analytics provider. No cross-site tracking.
 • Payment data: billing information is handled directly by Stripe. We do not store card details.
-• Communications: emails you send to hello@foundy.studio and any correspondence relating to your project.`,
+• Communications: emails you send to hello@fundy.studio and any correspondence relating to your project.`,
   },
   {
     title: '3. Why we process it',
@@ -66,7 +66,7 @@ We do not sell, rent, or trade your personal data. We do not share data with adv
 • Portability — receive your data in a structured, machine-readable format.
 • Withdraw consent at any time.
 
-To exercise any right, email hello@foundy.studio. We will respond within 30 days.`,
+To exercise any right, email hello@fundy.studio. We will respond within 30 days.`,
   },
   {
     title: '8. Cookies',
@@ -78,11 +78,11 @@ To exercise any right, email hello@foundy.studio. We will respond within 30 days
   },
   {
     title: '10. Changes to this policy',
-    body: `We may update this policy to reflect changes in our practices or applicable law. We will post the revised policy at foundy.studio/privacy with an updated "Last updated" date. Continued use of our services after changes constitutes acceptance.`,
+    body: `We may update this policy to reflect changes in our practices or applicable law. We will post the revised policy at fundy.studio/privacy with an updated "Last updated" date. Continued use of our services after changes constitutes acceptance.`,
   },
   {
     title: '11. Complaints',
-    body: `If you believe we have mishandled your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk or call 0303 123 1113. We would appreciate the chance to address your concerns directly first — email hello@foundy.studio.`,
+    body: `If you believe we have mishandled your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk or call 0303 123 1113. We would appreciate the chance to address your concerns directly first — email hello@fundy.studio.`,
   },
 ]
 
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
 
         {/* Back */}
         <Link href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.78rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none', letterSpacing: '0.04em', marginBottom: '3rem' }}>
-          ← foundy.studio
+          ← fundy.studio
         </Link>
 
         {/* Header */}
@@ -137,8 +137,8 @@ export default function PrivacyPage() {
             <Link href="/terms" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
               Terms of Service
             </Link>
-            <Link href="mailto:hello@foundy.studio" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
-              hello@foundy.studio
+            <Link href="mailto:hello@fundy.studio" style={{ fontSize: '0.7rem', color: 'var(--faint)', fontFamily: 'var(--font-dm-mono)', textDecoration: 'none' }}>
+              hello@fundy.studio
             </Link>
           </div>
         </div>
