@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // foundy.studio production config
+  // fundy.studio production config
   poweredByHeader: false,
   compress: true,
   images: {
